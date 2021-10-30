@@ -7,26 +7,30 @@ import API from '../../store/api';
 import Spinner from '@momentum-ui/react/lib/Spinner';
 
 import squid from './monsters2x/squid.png';
+import alien from './monsters2x/alien.png';
 
-const monsters = [squid];
+const monsters = [squid, alien];
 
 const HomePage = (props) => {
-  const [data, setData] = useState(testData);
-  let showError = false;
-  let errorMsg = "";
+  const [data, setData] = useState(null);
+  const [monster, setMonster] = useState(0);
   useEffect(() => {
-    API.login(props.userId, "nei")
+    console.log("hei");
+    API.getTasks(props.userId)
     .then((res) => {
       console.log(res);
-      //setData(res);
+      setData(res);
+      
     })
     .catch(err => {
-      showError = true;
+      //showError = true;
       console.log(err.message);
-      errorMsg = err.message;
+      //errorMsg = err.message;
       ////////// TESTING
-      setData(testData);
+      //setData(testData);
     });
+    //console.log(Math.floor(Math.random() * (2 - 1)));
+    //setMonster(Math.round(Math.random() * (2 - 1)));
   }, []);
   if(!data || !data.team){
     return (
@@ -78,8 +82,7 @@ const HomePage = (props) => {
   );
 };
 
-HomePage.propTypes = {
+HomePage.proptypes ={
   userId: PropTypes.string.isRequired
 };
-
 export default HomePage;
