@@ -4,7 +4,7 @@ import CircularSlider from '@fseehawer/react-circular-slider';
 import ToDo from './todo';
 import testData from "./testData";
 import API from '../../store/api';
-import AlertDefault from '../shared/Alert';
+import monster from './monster2.png';
 import Spinner from '@momentum-ui/react/lib/Spinner';
 const HomePage = (props) => {
   const [data, setData] = useState(null);
@@ -46,18 +46,18 @@ const HomePage = (props) => {
         textAlign: "center"
       }}>
         <CircularSlider
-          label={data.team.name}
+          renderLabelValue={(<img src={monster} alt="monster" style={{ width: 120, height: 120, position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)"}}/>)}
           labelColor="#005a58"
           hideKnob={true}
           knobDraggable={false}
           valueFontSize={0}
           labelFontSize="2rem"
-          progressColorFrom="#00bfbd"
-          progressColorTo="#009c9a"
+          progressColorFrom="#ff0000cc"
+          progressColorTo="red"
           progressSize={24}
           trackColor="#eeeeee"
           trackSize={24}
-          dataIndex={currentProgress/currentMilestone["tpNeeded"]*360}
+          dataIndex={360 - (currentProgress/currentMilestone["tpNeeded"]*360)}
           style={{width: 280}}
         />
         <p>Reward for the current milestone: {currentMilestone["reward"]}</p>
