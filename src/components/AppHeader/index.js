@@ -72,10 +72,6 @@ class AppHeader extends Component {
   }
 }
 
-AppHeader.propTypes = {
-  actions: PropTypes.object.isRequired,
-};
-
 
 
 

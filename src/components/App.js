@@ -12,7 +12,9 @@ class App extends Component {
       <div className="md-main">
         <AppHeader />
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <Route exact path="/">
+            <HomePage userId={'test'} />
+          </Route>
           <Route component={NotFoundPage} />
         </Switch>
       </div>

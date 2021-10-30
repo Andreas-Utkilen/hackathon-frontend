@@ -1,11 +1,28 @@
-import React, { Fragment } from 'react';
-
-import Hero from '../shared/Hero';
+import React, { Fragment, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import CircularSlider from '@fseehawer/react-circular-slider';
 import ToDo from './todo';
 import data from "./testData";
 import Spinner from '@momentum-ui/react/lib/Spinner';
-const HomePage = () => {
+import Alert from '../shared/Alert';
+import API from '../../store/api';
+const HomePage = (props) => {
+  let data = {
+    tasks: []
+  };
+  let showError = false;
+  let errorMsg = "";
+  useEffect(() => {
+    API.getTasks(props.userId)
+    .then((res) => {
+      data = res;
+    })
+    .catch(err => {
+      showError = true;
+      console.log(err.message);
+      errorMsg = err.message;
+    });
+  }, []);
   return (
     <Fragment>
       <div className="container" style={{
@@ -31,10 +48,14 @@ const HomePage = () => {
         />
         <p>Time until next update: 5 days, 4 hours and 12 mins</p>
         <ToDo data={data} />
-        <Spinner />
+        <Alert show={showError} msg={"test"} />
       </div>
     </Fragment>
   );
+};
+
+HomePage.propTypes = {
+  userId: PropTypes.string.isRequired
 };
 
 export default HomePage;
