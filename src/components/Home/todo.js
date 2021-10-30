@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import monster from './monster.png';
+import green from './monsters1x/green.png';
 import API from '../../store/api';
+
+const monsters = [green];
 
 export default function ToDo(props) {
   const killMonster = (button, taskId, completed) => {
@@ -34,7 +36,7 @@ export default function ToDo(props) {
                   (
                     <div className="container" key={task.id} style={{width: 512, height: 60, display: "flex", alignItems: "center", borderBottom: "1px solid gray", paddingTop: "0.5rem"}}>
                       <button style={{ background: "none", border: "none", padding: 0}} onClick={(e) => killMonster(e.target, task.id, task.completed)}>
-                        <img className= {task.completed ? "sword monster_alive monster_dead" : "sword monster_alive"} src={monster} alt="monster"/>
+                        <img className= {task.completed ? "sword monster_alive monster_dead" : "sword monster_alive"} src={monsters[0]} alt="monster"/>
                       </button>
                       <div className="column"
                         style={{textDecoration: task.completed ? "line-through" : ""}}

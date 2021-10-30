@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import App from './App';
 
@@ -9,9 +9,9 @@ export default class Root extends Component {
     const { store, history } = this.props;
     return (
       <Provider store={store}>
-        <BrowserRouter>
+        <Router history={history} >
           <App history={history} />
-        </BrowserRouter>
+        </Router>
       </Provider>
     );
   }

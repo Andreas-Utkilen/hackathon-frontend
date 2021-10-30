@@ -4,8 +4,12 @@ import CircularSlider from '@fseehawer/react-circular-slider';
 import ToDo from './todo';
 import testData from "./testData";
 import API from '../../store/api';
-import monster from './monster2.png';
 import Spinner from '@momentum-ui/react/lib/Spinner';
+
+import squid from './monsters2x/squid.png';
+
+const monsters = [squid];
+
 const HomePage = (props) => {
   const [data, setData] = useState(testData);
   let showError = false;
@@ -53,7 +57,7 @@ const HomePage = (props) => {
       }}>
         <h1 style={{ fontWeight: "bold", margin: "1rem 0"}}>{data.team.name.toUpperCase()}</h1>
         <CircularSlider
-          renderLabelValue={(<img src={monster} alt="monster" style={{ width: 120, height: 120, position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)"}}/>)}
+          renderLabelValue={(<img src={monsters[0]} alt="monster" style={{ width: 120, height: 120, position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)"}}/>)}
           labelColor="#005a58"
           hideKnob={true}
           knobDraggable={false}
