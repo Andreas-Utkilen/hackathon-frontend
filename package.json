@@ -33,6 +33,7 @@
     "@fseehawer/react-circular-slider": "^2.3.5",
     "@momentum-ui/react": "^23.0.18",
     "axios": "^0.24.0",
+    "lottie-react": "^2.1.0",
     "object-assign": "~4.1.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
