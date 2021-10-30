@@ -7,22 +7,22 @@ import API from '../../store/api';
 import monster from './monster2.png';
 import Spinner from '@momentum-ui/react/lib/Spinner';
 const HomePage = (props) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(testData);
   let showError = false;
   let errorMsg = "";
-  useEffect(() => {
-    API.getTasks(props.userId)
-    .then((res) => {
-      setData(res);
-    })
-    .catch(err => {
-      showError = true;
-      console.log(err.message);
-      errorMsg = err.message;
-      ////////// TESTING
-      setData(testData);
-    });
-  }, []);
+  // useEffect(() => {
+  //   API.getTasks(props.userId)
+  //   .then((res) => {
+  //     setData(res);
+  //   })
+  //   .catch(err => {
+  //     showError = true;
+  //     console.log(err.message);
+  //     errorMsg = err.message;
+  //     ////////// TESTING
+  //     setData(testData);
+  //   });
+  // }, []);
   if(!data || !data.team){
     return (
       <Spinner />
@@ -61,7 +61,6 @@ const HomePage = (props) => {
           style={{width: 280}}
         />
         <p>Reward for the current milestone: {currentMilestone["reward"]}</p>
-        <p>Time until next update: 5 days, 4 hours and 12 mins</p>
         <ToDo data={data} />
       </div>
     </Fragment>
