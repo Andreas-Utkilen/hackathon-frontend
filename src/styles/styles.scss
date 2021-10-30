@@ -19,3 +19,9 @@ $images-path: "~@momentum-ui/core/images";
     width: 50%;
     transform: rotate(-90deg);
 }
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}

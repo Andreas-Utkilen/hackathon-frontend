@@ -6,9 +6,7 @@ export default function ToDo(props) {
   const killMonster = (button) => {
     var className = button.target.className;
     if(className.includes("monster_dead")) {
-      console.log(className);
-      className.replace("monster_dead", "");
-      console.log(className);
+      className = className.replace("monster_dead", "");
     }
     else {
       className += " monster_dead";
@@ -24,7 +22,10 @@ export default function ToDo(props) {
                       <button style={{ background: "none", border: "none"}} onClick={killMonster.bind(this)}>
                         <img className="sword monster_alive" src={monster} alt="monster"/>
                       </button>
-                      <p>{task.name}</p>
+                      <div className="column">
+                        <p>{task.name}</p>
+                        <h6 style={{display:"flex", flexWrap:"wrap"}}>{task.description}</h6>
+                      </div>
                     </div>      
                   )
               )}
