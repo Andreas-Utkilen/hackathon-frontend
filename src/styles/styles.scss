@@ -5,7 +5,7 @@ $images-path: "~@momentum-ui/core/images";
 @import "~@momentum-ui/core/scss/momentum-ui";
 @import '~@momentum-ui/core/scss/layouts/sites';
 
-.sword {
+body, .sword {
     cursor: url(https://cur.cursors-4u.net/sports/spo-1/spo15.cur), auto;    
 }
 
@@ -16,7 +16,7 @@ $images-path: "~@momentum-ui/core/images";
 }
 
 .monster_dead {
-    height: 0;
+    height: 50%;
     transform: rotate(-90deg);
 }
 

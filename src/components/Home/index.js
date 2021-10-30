@@ -62,7 +62,6 @@ const HomePage = (props) => {
           style={{width: 280}}
         />
         <p>Reward for the current milestone: {currentMilestone["reward"]}</p>
-        <p>Time until next update: 5 days, 4 hours and 12 mins</p>
         <ToDo data={data} />
       </div>
     </Fragment>

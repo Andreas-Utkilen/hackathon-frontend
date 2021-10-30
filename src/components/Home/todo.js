@@ -21,9 +21,11 @@ export default function ToDo(props) {
                   (
                     <div className="container" key={task.id} style={{width: 350, height: 60, display: "flex", alignItems: "center", borderBottom: "1px solid gray", paddingTop: "0.5rem"}}>
                       <button style={{ background: "none", border: "none"}} onClick={(e) => killMonster(e.target, task.id, props.data.userId)}>
-                        <img className="sword monster_alive" src={monster} alt="monster"/>
+                        <img className= {task.completed ? "sword monster_alive monster_dead" : "sword monster_alive"} src={monster} alt="monster"/>
                       </button>
-                      <div className="column">
+                      <div className="column"
+                        style={{textDecoration: task.completed ? "line-through" : ""}}
+                        >
                         <p>{task.name}</p>
                         <h6 style={{display:"flex", flexWrap:"wrap"}}>{task.description}</h6>
                       </div>
