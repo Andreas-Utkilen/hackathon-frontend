@@ -5,17 +5,26 @@ import CircularSlider from '@fseehawer/react-circular-slider';
 import ToDo from './todo';
 import data from "./testData";
 import Spinner from '@momentum-ui/react/lib/Spinner';
-const HomePage = () => {
+
+const HomePage = (props) => {
+  var currentMilestone;
+  props.data["team"]["milestones"].forEach(milestone => {
+    if (milestone["done"]==0) {
+      currentMilestone=milestone
+    }    
+  });
+
   return (
     <Fragment>
       <div className="container" style={{
         display: "flex", 
         justifyContent: "center", 
         alignItems: "center", 
-        flexDirection: "column"
+        flexDirection: "column",
+        textAlign: "center"
       }}>
         <CircularSlider
-          label="Team 1"
+          label={props.data["team"]["name"]}
           labelColor="#005a58"
           hideKnob={true}
           knobDraggable={false}
@@ -26,12 +35,13 @@ const HomePage = () => {
           progressSize={24}
           trackColor="#eeeeee"
           trackSize={24}
-          dataIndex={230}
+          dataIndex={100}
           style={{width: 280}}
         />
+        <p>Reward for the current milestone: {currentMilestone["reward"]}</p>
         <p>Time until next update: 5 days, 4 hours and 12 mins</p>
         <ToDo data={data} />
-        <Spinner />
+        {/* <Spinner /> */}
       </div>
     </Fragment>
   );

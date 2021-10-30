@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import AppHeader from './AppHeader';
 import HomePage from './Home';
 import NotFoundPage from './NotFound';
+import data from './Home/testData.json';
 
 class App extends Component {
   render() {
@@ -12,7 +13,7 @@ class App extends Component {
       <div className="md-main">
         <AppHeader />
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <Route exact path="/" component={() => <HomePage data={data} />}/>
           <Route component={NotFoundPage} />
         </Switch>
       </div>
