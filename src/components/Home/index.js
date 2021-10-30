@@ -7,10 +7,10 @@ import API from '../../store/api';
 import monster from './monster2.png';
 import Spinner from '@momentum-ui/react/lib/Spinner';
 const HomePage = (props) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(testData);
   let showError = false;
   let errorMsg = "";
-  useEffect(() => {
+  /* useEffect(() => {
     API.getTasks(props.userId)
     .then((res) => {
       setData(res);
@@ -22,7 +22,7 @@ const HomePage = (props) => {
       ////////// TESTING
       setData(testData);
     });
-  }, []);
+  }, []); */
   if(!data || !data.team){
     return (
       <Spinner />
@@ -45,6 +45,7 @@ const HomePage = (props) => {
         flexDirection: "column",
         textAlign: "center"
       }}>
+        <h1 style={{ fontWeight: "bold", margin: "1rem 0"}}>{data.team.name.toUpperCase()}</h1>
         <CircularSlider
           renderLabelValue={(<img src={monster} alt="monster" style={{ width: 120, height: 120, position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)"}}/>)}
           labelColor="#005a58"

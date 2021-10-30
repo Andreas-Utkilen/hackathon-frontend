@@ -23,7 +23,7 @@ const getTasks = (userId) => {
 };
 
 const finishTask = (taskId, userId) => {
-  return fetchData('POST', '/tasks/finish', { taskId: taskId, userId: userId });
+  return fetchData('POST', '/tasks/finish', null, { taskId: taskId, userId: userId });
 };
 
 const API = {
