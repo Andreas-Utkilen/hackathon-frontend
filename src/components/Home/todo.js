@@ -17,6 +17,7 @@ export default function ToDo(props) {
                                 task.completed = true;
                               }}
                           />
+                        <h6 style={{display:"flex", flexWrap:"wrap"}}>{task.description}</h6>
                       </CheckboxGroup>   
                     </div>      
                   )
