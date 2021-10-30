@@ -10,9 +10,9 @@ export default function ToDo(props) {
                     <div className="container" key={task.id} style={{width: 350, height: 60, display: "flex", alignItems: "center", borderBottom: "1px solid gray", paddingTop: "0.5rem"}}>
                       <CheckboxGroup name={`CheckboxGroup-${task.id}`}>
                           <Checkbox
-                              value={task.completed || false}
+                              checked={task.done == 0}
                               label={task.name}
-                              htmlId={task.id}
+                              htmlId={`checkbox-${task.id}`}
                               onChange={() => {
                                 task.completed = true;
                               }}
