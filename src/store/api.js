@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const fetchData = (method, url, params, data) => {
   return axios({
-    baseURL: "",
+    baseURL: "http://172.20.10.2:3000",
     method: method,
     url: url,
     params: params,
@@ -23,7 +23,7 @@ const getTasks = (userId) => {
 };
 
 const finishTask = (taskId, userId) => {
-  return fetchData('POST', '/task/finish', { taskId: taskId, userId: userId });
+  return fetchData('POST', '/tasks/finish', { taskId: taskId, userId: userId });
 };
 
 const API = {

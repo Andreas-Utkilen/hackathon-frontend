@@ -23,7 +23,7 @@ const HomePage = (props) => {
       setData(testData);
     });
   }, []);
-  if(!data){
+  if(!data || !data.team){
     return (
       <Spinner />
     );
