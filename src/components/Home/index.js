@@ -23,11 +23,7 @@ const HomePage = (props) => {
       
     })
     .catch(err => {
-      //showError = true;
       console.log(err.message);
-      //errorMsg = err.message;
-      ////////// TESTING
-      //setData(testData);
     });
     //console.log(Math.floor(Math.random() * (2 - 1)));
     //setMonster(Math.round(Math.random() * (2 - 1)));
