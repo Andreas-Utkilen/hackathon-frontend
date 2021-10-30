@@ -11,21 +11,21 @@
                 "order":0,
                 "reward":"Kart!",
                 "tpNeeded":50,
-                "done":1
+                "done":true
             },
             {
                 "id":3,
                 "order":1,
                 "reward":"Escape game!",
                 "tpNeeded":30,
-                "done":1
+                "done":true
             },
             {
                 "id":2,
                 "order":2,
                 "reward":"Online party game!",
                 "tpNeeded":40,
-                "done":0
+                "done":false
             }
         ]
     },
@@ -33,35 +33,35 @@
         {
             "id":2,
             "tp":3,
-            "done":1,
+            "completed":true,
             "name":"Do the reporting",
             "description":"Do the reporting with Word, 50 pages"
         },
         {
             "id":0,
             "tp":5,
-            "done":0,
+            "completed":false,
             "name":"Make the project presentation",
             "description":"Should last 15 mins"
         },
         {
             "id":1,
             "tp":1,
-            "done":1,
+            "completed":true,
             "name":"Contact Cisco partners",
             "description":"About the new idea for the project"
         },
         {
             "id":4,
             "tp":10,
-            "done":0,
+            "completed":false,
             "name":"Finish the code for the presentation",
             "description":""
         },
         {
             "id":3,
             "tp":1,
-            "done":0,
+            "completed":false,
             "name":"Send invites for the next meeting",
             "description":"Max 5 persons in the room: Covid restrictions ;("
         }
