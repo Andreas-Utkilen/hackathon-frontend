@@ -10,7 +10,7 @@ export default class Root extends Component {
     return (
       <Provider store={store}>
         <BrowserRouter>
-          <App />
+          <App history={this.props.history} />
         </BrowserRouter>
       </Provider>
     );

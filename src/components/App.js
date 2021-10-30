@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import AppHeader from './AppHeader';
 import HomePage from './Home';
 import NotFoundPage from './NotFound';
+import Login from './Login';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
         <AppHeader />
         <Switch>
           <Route exact path="/" component={() => <HomePage userId={"test"} />}/>
+          <Route exact path="/login" component={() => <Login history={this.props.history}/>}/>
           <Route component={NotFoundPage} />
         </Switch>
       </div>
