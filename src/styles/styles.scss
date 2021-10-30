@@ -6,5 +6,16 @@ $images-path: "~@momentum-ui/core/images";
 @import '~@momentum-ui/core/scss/layouts/sites';
 
 .sword {
-    cursor: url(https://cur.cursors-4u.net/sports/spo-1/spo15.cur), auto;
+    cursor: url(https://cur.cursors-4u.net/sports/spo-1/spo15.cur), auto;    
+}
+
+.monster_alive {
+    width: 30px;
+    height: 30px;
+    transition: all 1s;
+}
+
+.monster_dead {
+    width: 50%;
+    transform: rotate(-90deg);
 }
