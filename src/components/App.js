@@ -22,6 +22,7 @@ class App extends Component {
 
 App.propTypes = {
   children: PropTypes.element,
+  history: PropTypes.object
 };
 
 export default hot(module)(App);

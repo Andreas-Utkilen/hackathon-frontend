@@ -5,22 +5,18 @@ import API from '../../store/api';
 
 export default function ToDo(props) {
   const killMonster = (button, taskId, completed) => {
-    console.log(button);
     if(!(button instanceof HTMLImageElement)) return;
     if(completed){
-      console.log("remove");
       button.classList.remove("monster_dead");
     }else{
       button.classList.add("monster_dead");
     }
-    let data = props.data;
-    data.tasks.find(task => task.id == taskId).completed = !completed;
-    props.setTasks();
     API.updateTask(taskId, !completed)
     .then(res => {
       if(res.status == 200){
-        
-        console.log("kill monster");
+        let data = props.data;
+        data.tasks.find(task => task.id == taskId).completed = !completed;
+        props.setTasks();
       }
     })
     .catch(err => {
