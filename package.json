@@ -30,6 +30,7 @@
   "author": "Cisco Systems, Inc.",
   "license": "MIT",
   "dependencies": {
+    "@fseehawer/react-circular-slider": "^2.3.5",
     "@momentum-ui/react": "^23.0.18",
     "object-assign": "~4.1.0",
     "react": "^16.8.3",

@@ -1,19 +1,37 @@
 import React, { Fragment } from 'react';
 
 import Hero from '../shared/Hero';
-
+import CircularSlider from '@fseehawer/react-circular-slider';
+import ToDo from './todo';
+import data from "./testData";
+import Spinner from '@momentum-ui/react/lib/Spinner';
 const HomePage = () => {
   return (
     <Fragment>
-      <Hero title="Get Started" description="Add your content below." textAlign="left" />
-      <div className="row">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit. Nulla quis varius elit. Vestibulum vel pellentesque
-          lectus. Mauris vitae rutrum sapien, in scelerisque metus. Duis eget
-          ullamcorper ex, non consectetur orci. Sed et diam massa. Donec nec
-          purus ex. Nunc diam dui, tempus ut blandit nec, aliquam vitae elit.
-        </p>
+      <div className="container" style={{
+        display: "flex", 
+        justifyContent: "center", 
+        alignItems: "center", 
+        flexDirection: "column"
+      }}>
+        <CircularSlider
+          label="Team 1"
+          labelColor="#005a58"
+          hideKnob={true}
+          knobDraggable={false}
+          valueFontSize={0}
+          labelFontSize="2rem"
+          progressColorFrom="#00bfbd"
+          progressColorTo="#009c9a"
+          progressSize={24}
+          trackColor="#eeeeee"
+          trackSize={24}
+          dataIndex={230}
+          style={{width: 280}}
+        />
+        <p>Time until next update: 5 days, 4 hours and 12 mins</p>
+        <ToDo data={data} />
+        <Spinner />
       </div>
     </Fragment>
   );

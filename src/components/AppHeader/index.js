@@ -10,16 +10,9 @@ import Topbar from '@momentum-ui/react/es/Topbar';
 import TopbarMobile from '@momentum-ui/react/es/TopbarMobile';
 import TopbarNav from '@momentum-ui/react/es/TopbarNav';
 import TopbarRight from '@momentum-ui/react/es/TopbarRight';
-import * as actions from '../Login/actions';
 
 class AppHeader extends Component {
-  logoutUser = () => {
-    console.log('log out user'); // eslint-disable-line no-console
-    this.props.actions.logoutUser();
-  };
-
   render() {
-    const logoIcon = <i className="icon icon-cisco-logo" />;
     const getAvatar = () => {
       const number = Math.floor(Math.random() * 101);
       const gender = Math.random() >= 0.5 ? 'women' : 'men';
@@ -27,39 +20,19 @@ class AppHeader extends Component {
     };
     const navItems = (
       <Fragment>
-        <ListItem
+        {/* <ListItem
           customRefProp="innerRef"
           customAnchorNode={
-            <NavLink exact to="/" activeClassName={'active'}>
-              Home
+            <NavLink to="/team" activeClassName={'active'}>
+              Team
             </NavLink>
           }
-        />
-        <ListItem
-          customRefProp="innerRef"
-          customAnchorNode={
-            <NavLink to="/about" activeClassName={'active'}>
-              About
-            </NavLink>
-          }
-        />
-        <ListItem
-          customRefProp="innerRef"
-          customAnchorNode={
-            <NavLink to="/blog" activeClassName={'active'}>
-              Blog
-            </NavLink>
-          }
-        />
+          style={{width: "100%"}}
+        /> */}
       </Fragment>
     );
-    const topBarPopoverContent = (
-        <List>
-          <ListItem onClick={this.logoutUser}>Log out</ListItem>
-        </List>
-    );
 
-    const topbarRight = this.props.isLoggedIn ? (
+    const topbarRight = (
       <div className="md-top-bar__user">
         {/* <Popover
           direction="bottom-right"
@@ -69,7 +42,7 @@ class AppHeader extends Component {
           <button
             className="md-avatar md-button--none"
             aria-haspopup="true"
-            onClick={this.logoutUser}>
+          >
             <img
               className="user-image"
               src={getAvatar()}
@@ -78,19 +51,13 @@ class AppHeader extends Component {
           </button>
         {/*</Popover> */}
       </div>
-    ) : (
-      <div className="md-top-bar__logged-out">
-        <Link to="/login">Log In</Link>
-        <Button color="blue">Sign Up</Button>
-      </div>
     );
 
     return (
       <Fragment>
         <Topbar
-          title="Momentum UI React Starter"
-          color="dark"
-          image={logoIcon}
+          title="ToDo"
+          color="light"
           anchor="/"
           fixed>
           <TopbarNav>{navItems}</TopbarNav>
@@ -98,7 +65,6 @@ class AppHeader extends Component {
           <TopbarMobile>
             {navItems}
             {/* <ListItemSeparator /> */}
-      {topBarPopoverContent}
           </TopbarMobile>
         </Topbar>
       </Fragment>
@@ -108,22 +74,9 @@ class AppHeader extends Component {
 
 AppHeader.propTypes = {
   actions: PropTypes.object.isRequired,
-  isLoggedIn: PropTypes.bool
 };
 
-function mapStateToProps(state) {
-  return {
-    isLoggedIn: state.user.loggedIn,
-  };
-}
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(actions, dispatch)
-  };
-}
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AppHeader);
+
+export default AppHeader;

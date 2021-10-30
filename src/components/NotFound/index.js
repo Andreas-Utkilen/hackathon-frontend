@@ -23,7 +23,7 @@ const NotFoundPage = () => {
       </div>
       <div className="md-panel__footer">
         <div className="footer__logo">
-          <i className="icon icon-cisco-logo" />
+            <i className="icon icon-cisco-logo" />
         </div>
         <div className="footer__copyright">
           &copy; 2018 Cisco and/or affiliates. All rights reserved.
