@@ -5,6 +5,8 @@ import ToDo from './todo';
 import testData from "./testData";
 import API from '../../store/api';
 import Spinner from '@momentum-ui/react/lib/Spinner';
+import Fireworks from '../Animations/1801-fireworks (1).json';
+import Lottie from "lottie-react";
 
 import squid from './monsters2x/squid.png';
 
@@ -14,25 +16,26 @@ const HomePage = (props) => {
   const [data, setData] = useState(testData);
   let showError = false;
   let errorMsg = "";
-  useEffect(() => {
-    API.login(props.userId, "nei")
-    .then((res) => {
-      console.log(res);
-      //setData(res);
-    })
-    .catch(err => {
-      showError = true;
-      console.log(err.message);
-      errorMsg = err.message;
-      ////////// TESTING
-      setData(testData);
-    });
-  }, []);
+  // useEffect(() => {
+  //   API.login(props.userId, "nei")
+  //   .then((res) => {
+  //     console.log(res);
+  //     //setData(res);
+  //   })
+  //   .catch(err => {
+  //     showError = true;
+  //     console.log(err.message);
+  //     errorMsg = err.message;
+  //     ////////// TESTING
+  //     setData(testData);
+  //   });
+  // }, []);
   if(!data || !data.team){
     return (
       <Spinner />
     );
-  }
+  };
+
   let currentMilestone = data.team.milestones.find(milestone => (milestone.done==0));
 
   let currentProgress = data.team.tp;
@@ -48,6 +51,7 @@ const HomePage = (props) => {
   
   return (
     <Fragment>
+      <Lottie animationData={Fireworks} style={{position:"absolute", width:"100vw", top:"-200px"}}/>
       <div className="container" style={{
         display: "flex", 
         justifyContent: "center", 
