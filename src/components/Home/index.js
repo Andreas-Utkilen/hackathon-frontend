@@ -6,6 +6,7 @@ import testData from "./testData";
 import API from '../../store/api';
 import Spinner from '@momentum-ui/react/lib/Spinner';
 import Fireworks from '../Animations/1801-fireworks (1).json';
+import BloodDrop from '../Animations/43221-red-blood-doping.json'
 import Lottie from "lottie-react";
 
 import squid from './monsters2x/squid.png';
@@ -16,20 +17,20 @@ const HomePage = (props) => {
   const [data, setData] = useState(testData);
   let showError = false;
   let errorMsg = "";
-  // useEffect(() => {
-  //   API.login(props.userId, "nei")
-  //   .then((res) => {
-  //     console.log(res);
-  //     //setData(res);
-  //   })
-  //   .catch(err => {
-  //     showError = true;
-  //     console.log(err.message);
-  //     errorMsg = err.message;
-  //     ////////// TESTING
-  //     setData(testData);
-  //   });
-  // }, []);
+  useEffect(() => {
+    API.login(props.userId, "nei")
+    .then((res) => {
+      console.log(res);
+      //setData(res);
+    })
+    .catch(err => {
+      showError = true;
+      console.log(err.message);
+      errorMsg = err.message;
+      ////////// TESTING
+      setData(testData);
+    });
+  }, []);
   if(!data || !data.team){
     return (
       <Spinner />
@@ -49,9 +50,13 @@ const HomePage = (props) => {
     setData(newState);
   };
   
+  const createBlood = (e) => {
+    console.log("drop blood")
+  }
+
   return (
     <Fragment>
-      <Lottie animationData={Fireworks} style={{position:"absolute", width:"100vw", top:"-200px"}}/>
+      <Lottie animationData={Fireworks} style={{position:"absolute", width:"100vw", top:"-200px"}} hidden/>
       <div className="container" style={{
         display: "flex", 
         justifyContent: "center", 
@@ -61,7 +66,7 @@ const HomePage = (props) => {
       }}>
         <h1 style={{ fontWeight: "bold", margin: "1rem 0"}}>{data.team.name.toUpperCase()}</h1>
         <CircularSlider
-          renderLabelValue={(<img src={monsters[0]} alt="monster" style={{ width: 120, height: 120, position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)"}}/>)}
+          renderLabelValue={(<img onClick={createBlood} src={monsters[0]} alt="monster" style={{ width: 120, height: 120, position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)"}}/>)}
           labelColor="#005a58"
           hideKnob={true}
           knobDraggable={false}
@@ -74,6 +79,7 @@ const HomePage = (props) => {
           trackSize={24}
           dataIndex={360 - (currentProgress/currentMilestone["tpNeeded"]*360)}
           style={{width: 280}}
+          onClick={createBlood}
         />
         <p>Reward for the current milestone: {currentMilestone["reward"]}</p>
         <ToDo data={data} setTasks={setTasks}/>
