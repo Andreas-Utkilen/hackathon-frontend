@@ -10,10 +10,11 @@ const HomePage = (props) => {
   const [data, setData] = useState(testData);
   let showError = false;
   let errorMsg = "";
-  /* useEffect(() => {
-    API.getTasks(props.userId)
+  useEffect(() => {
+    API.login(props.userId, "nei")
     .then((res) => {
-      setData(res);
+      console.log(res);
+      //setData(res);
     })
     .catch(err => {
       showError = true;
@@ -22,7 +23,7 @@ const HomePage = (props) => {
       ////////// TESTING
       setData(testData);
     });
-  }, []); */
+  }, []);
   if(!data || !data.team){
     return (
       <Spinner />
@@ -36,6 +37,11 @@ const HomePage = (props) => {
       currentProgress -= milestone.tpNeeded;
     }
   });
+  const setTasks = () => {
+    let newState = Object.assign({}, data);
+    setData(newState);
+  };
+  
   return (
     <Fragment>
       <div className="container" style={{
@@ -62,7 +68,7 @@ const HomePage = (props) => {
           style={{width: 280}}
         />
         <p>Reward for the current milestone: {currentMilestone["reward"]}</p>
-        <ToDo data={data} />
+        <ToDo data={data} setTasks={setTasks}/>
       </div>
     </Fragment>
   );

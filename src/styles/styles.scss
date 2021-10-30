@@ -16,8 +16,9 @@ body, .sword {
 }
 
 .monster_dead {
-    height: 50%;
+    width: 50%;
     transform: rotate(-90deg);
+    filter: hue-rotate(-90deg);
 }
 
 .column {

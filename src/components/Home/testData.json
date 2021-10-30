@@ -33,7 +33,7 @@
         {
             "id":2,
             "tp":3,
-            "completed":true,
+            "completed":false,
             "name":"Do the reporting",
             "description":"Do the reporting with Word, 50 pages"
         },
@@ -47,7 +47,7 @@
         {
             "id":1,
             "tp":1,
-            "completed":true,
+            "completed":false,
             "name":"Contact Cisco partners",
             "description":"About the new idea for the project"
         },

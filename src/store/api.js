@@ -22,14 +22,14 @@ const getTasks = (userId) => {
   return fetchData('GET', '/tasks', { userId: userId });
 };
 
-const finishTask = (taskId, userId) => {
-  return fetchData('POST', '/tasks/finish', null, { taskId: taskId, userId: userId });
+const updateTask = (taskId, status) => {
+  return fetchData('POST', '/tasks/update', null, { taskId: taskId, status: status });
 };
 
 const API = {
   login,
   getTasks,
-  finishTask
+  updateTask
 };
 
 export default API;
