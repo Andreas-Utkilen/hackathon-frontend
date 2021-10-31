@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import Lottie from 'lottie-react';
 import BloodDrop from '../Animations/43221-red-blood-doping.json';
 import green from './monsters1x/green.png';
+import red from './monsters1x/red.png';
+import red2 from './monsters1x/red2.png';
+import purple from './monsters1x/purple.png';
 import API from '../../store/api';
 
-const monsters = [green];
+const monsters = [green, red, purple, red2];
 
 export default function ToDo(props) {
   const killMonster = (e, button, taskId, completed) => {
@@ -52,13 +55,13 @@ export default function ToDo(props) {
                   (
                     <div className="container" key={task.id} style={{width: 512, height: 60, display: "flex", alignItems: "center", borderBottom: "1px solid gray", paddingTop: "0.5rem"}}>
                       <button style={{ background: "none", border: "none", padding: 0}} onClick={(e) => killMonster(e, e.target, task.id, task.completed)}>
-                        <img className= {task.completed ? "sword monster_alive monster_dead" : "sword monster_alive"} src={monsters[0]} alt="monster"/>
+                        <img className= {task.completed ? "sword monster_alive monster_dead" : "sword monster_alive"} src={monsters[Math.round(Math.random()*(monsters.length -1))]} alt="monster"/>
                       </button>
                       <div className="column"
                         style={{textDecoration: task.completed ? "line-through" : ""}}
                         >
-                        <p>{task.name}</p>
-                        <h6 style={{display:"flex", flexWrap:"wrap"}}>{task.description}</h6>
+                        <h3>{task.name}</h3>
+                        <h5 style={{display:"flex", flexWrap:"wrap"}}>{task.description}</h5>
                       </div>
                     </div>      
                   )
