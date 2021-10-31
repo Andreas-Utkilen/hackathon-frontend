@@ -9,6 +9,7 @@ import purple from './monsters1x/purple.png';
 import API from '../../store/api';
 
 const monsters = [green, red, purple, red2];
+var assignedMonster = monsters[0];
 
 export default function ToDo(props) {
   const killMonster = (e, button, taskId, completed) => {
@@ -30,6 +31,7 @@ export default function ToDo(props) {
     }
     API.updateTask(taskId, !completed)
     .then(res => {
+      assignedMonster = monsters[Math.round(Math.random()*(monsters.length -1))];
       if(res.status == 200){
         let data = props.data;
         data.tasks.find(task => task.id == taskId).completed = !completed;
@@ -55,7 +57,7 @@ export default function ToDo(props) {
                   (
                     <div className="container" key={task.id} style={{width: 512, height: 60, display: "flex", alignItems: "center", borderBottom: "1px solid gray", paddingTop: "0.5rem"}}>
                       <button style={{ background: "none", border: "none", padding: 0}} onClick={(e) => killMonster(e, e.target, task.id, task.completed)}>
-                        <img className= {task.completed ? "sword monster_alive monster_dead" : "sword monster_alive"} src={monsters[Math.round(Math.random()*(monsters.length -1))]} alt="monster"/>
+                        <img className= {task.completed ? "sword monster_alive monster_dead" : "sword monster_alive"} src={assignedMonster} alt="monster"/>
                       </button>
                       <div className="column"
                         style={{textDecoration: task.completed ? "line-through" : ""}}
