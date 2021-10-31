@@ -1,13 +1,10 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import CircularSlider from '@fseehawer/react-circular-slider';
 import ToDo from './todo';
 import testData from "./testData";
 import API from '../../store/api';
 import Spinner from '@momentum-ui/react/lib/Spinner';
-import Fireworks from '../Animations/1801-fireworks (1).json';
-import BloodDrop from '../Animations/43221-red-blood-doping.json'
-import Lottie from "lottie-react";
 
 import squid from './monsters2x/squid.png';
 import alien from './monsters2x/alien.png';
@@ -16,9 +13,9 @@ const monsters = [squid, alien];
 
 const HomePage = (props) => {
   const [data, setData] = useState(null);
-  const [monster, setMonster] = useState(0);
+  //const [monster, setMonster] = useState(0);
+  const blood = useRef();
   useEffect(() => {
-    console.log("hei");
     API.getTasks(props.userId)
     .then((res) => {
       console.log(res);
@@ -27,36 +24,40 @@ const HomePage = (props) => {
     })
     .catch(err => {
       console.log(err.message);
+      setData(testData);
     });
     //console.log(Math.floor(Math.random() * (2 - 1)));
     //setMonster(Math.round(Math.random() * (2 - 1)));
   }, []);
   if(!data || !data.team){
     return (
-      <Spinner />
+      <Spinner style={{position: "absolute", left:"50%", transformX: "-50%"}}/>
     );
-  };
-
-  let currentMilestone = data.team.milestones.find(milestone => (milestone.done==0));
-
-  let currentProgress = data.team.tp;
-  data.team.milestones.forEach(milestone => {
+  }
+  const tasksDone = data.tasks.filter(task => task.completed).length;
+  let currentMilestone = data.team.milestones[0];
+  let currentProgress = (5-tasksDone)/5;
+  data.team.milestones[0].done = (5-tasksDone)/5 <= 0;
+  /* data.team.milestones.forEach(milestone => {
     if (milestone.done==1) {
       currentProgress -= milestone.tpNeeded;
     }
-  });
+  }); */
   const setTasks = () => {
     let newState = Object.assign({}, data);
     setData(newState);
   };
   
   const createBlood = (e) => {
-    console.log("drop blood")
-  }
+    console.log(e.clientX);
+    blood.style.left = `${e.clientX}px`;
+    blood.style.top = `${e.clientY}px`;
+  };
+  
 
   return (
     <Fragment>
-      <Lottie animationData={Fireworks} style={{position:"absolute", width:"100vw", top:"-200px"}} hidden/>
+      {/* <Lottie animationData={Fireworks} style={{position:"absolute", width:"100vw", top:"0", display: currentMilestone.done ? "block" : "none"}}/> */}
       <div className="container" style={{
         display: "flex", 
         justifyContent: "center", 
@@ -65,22 +66,29 @@ const HomePage = (props) => {
         textAlign: "center"
       }}>
         <h1 style={{ fontWeight: "bold", margin: "1rem 0"}}>{data.team.name.toUpperCase()}</h1>
-        <CircularSlider
-          renderLabelValue={(<img onClick={createBlood} src={monsters[0]} alt="monster" style={{ width: 120, height: 120, position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)"}}/>)}
-          labelColor="#005a58"
-          hideKnob={true}
-          knobDraggable={false}
-          valueFontSize={0}
-          labelFontSize="2rem"
-          progressColorFrom="#ff0000cc"
-          progressColorTo="red"
-          progressSize={24}
-          trackColor="#eeeeee"
-          trackSize={24}
-          dataIndex={360 - (currentProgress/currentMilestone["tpNeeded"]*360)}
-          style={{width: 280}}
-          onClick={createBlood}
-        />
+        {currentProgress > 0 ? (
+          <CircularSlider
+            renderLabelValue={(<img src={monsters[0]} className="bounce" alt="monster" style={{ width: 120, height: 120, position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)"}}/>)}
+            labelColor="#005a58"
+            hideKnob={true}
+            knobDraggable={false}
+            valueFontSize={0}
+            labelFontSize="2rem"
+            progressColorFrom="#ff0000cc"
+            progressColorTo="red"
+            progressSize={24}
+            trackColor="#eeeeee"
+            trackSize={24}
+            dataIndex={360*(currentProgress)}
+            style={{width: 280}}
+            onClick={createBlood}
+          />
+        ):
+        (
+          <div className="container" style={{height:288, width: 280, position: "relative"}}>
+            <img id="monster_big" src={monsters[0]} className="monster_big monster_dead_big" alt="monster" style={{ width: 120, height: 120, position: "absolute", left: "50%", top: "50%"}}/>
+          </div>
+        )}
         <p>Reward for the current milestone: {currentMilestone["reward"]}</p>
         <ToDo data={data} setTasks={setTasks}/>
       </div>

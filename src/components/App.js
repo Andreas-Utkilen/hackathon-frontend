@@ -13,7 +13,7 @@ class App extends Component {
       <div className="md-main">
         <AppHeader />
         <Switch>
-          <Route exact path="/" component={() => <HomePage userId={4} />}/>
+          <Route exact path="/" component={() => <HomePage userId={5} />}/>
           <Route exact path="/login" component={() => <Login history={this.props.history}/>}/>
           <Route component={NotFoundPage} />
         </Switch>

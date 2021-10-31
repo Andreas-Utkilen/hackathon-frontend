@@ -5,8 +5,14 @@ $images-path: "~@momentum-ui/core/images";
 @import "~@momentum-ui/core/scss/momentum-ui";
 @import '~@momentum-ui/core/scss/layouts/sites';
 
-body, .sword {
-    cursor: url(https://cur.cursors-4u.net/sports/spo-1/spo15.cur), auto;    
+.sword {
+    cursor: url(https://cur.cursors-4u.net/sports/spo-1/spo15.cur), auto;   
+    outline: none;
+}
+.sword:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
 }
 
 .monster_alive {
@@ -19,9 +25,38 @@ body, .sword {
     transform: rotate(-90deg);
     filter: grayscale(1);
 }
+.monster_big{
+  transform: translate(-50%, -50%);
+}
+.monster_dead_big {
+  transform: translate(-50%, -50%) rotate(-90deg);
+  filter: grayscale(1);
+  transition: all 1s;
+}
 
 .column {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+button:focus{
+  outline: none !important;
+  border: none;
+  box-shadow: none;
+}
+.bounce {
+  animation-name: bounce;
+  animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+@keyframes bounce {
+  0%   { transform: scale(1,1)      translate(-50%,-50%); }
+  10%  { transform: scale(1.1,.9)   translate(-50%,-50%); }
+  30%  { transform: scale(.9,1.1)   translate(-50%,calc(-50% - 20px)); }
+  50%  { transform: scale(1.05,.95) translate(-50%,-50%); }
+  57%  { transform: scale(1,1)      translate(-50%,calc(-50%-7px)); }
+  64%  { transform: scale(1,1)      translate(-50%,-50%); }
+  100% { transform: scale(1,1)      translate(-50%,-50%); }
 }

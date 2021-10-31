@@ -4,7 +4,7 @@ import {
   Alert,
   AlertContainer
 } from '@momentum-ui/react';
-const AlertDefault = (props) => {
+const AlertDefault = () => {
   let [show, setShow] = useState(false);
   return (
     <section>

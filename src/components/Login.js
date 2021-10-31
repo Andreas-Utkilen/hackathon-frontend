@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 // import * as actions from './actions';
 import Button from '@momentum-ui/react/es/Button';
 import Input from '@momentum-ui/react/es/Input';
-import { Route, Switch } from 'react-router-dom';
 
 class LoginPage extends React.PureComponent {
   state = {
